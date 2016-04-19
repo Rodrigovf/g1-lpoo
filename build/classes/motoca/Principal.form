@@ -27,26 +27,27 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="147" max="-2" attributes="0"/>
-                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Component id="btnCancelar" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="147" max="-2" attributes="0"/>
+                          <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Component id="rbComum" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                                   <Component id="rbEletrica" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="32767" attributes="0"/>
+                                  <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
                                   <Component id="rbCober" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <Group type="102" alignment="0" attributes="0">
+                              <Group type="102" attributes="0">
                                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                       <Group type="102" attributes="0">
                                           <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
@@ -61,36 +62,46 @@
                                   </Group>
                                   <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="102" attributes="0">
+                                      <Group type="102" alignment="0" attributes="0">
                                           <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
                                           <Component id="cbxVolt" min="-2" pref="56" max="-2" attributes="0"/>
                                       </Group>
-                                      <Group type="102" attributes="0">
+                                      <Group type="102" alignment="0" attributes="0">
                                           <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="cbxPerso" min="-2" pref="119" max="-2" attributes="0"/>
+                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                          <Component id="cbxPerso" min="-2" pref="174" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                              </Group>
+                              <Group type="102" attributes="0">
+                                  <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Component id="btnInserir" min="-2" pref="78" max="-2" attributes="0"/>
+                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                          <Component id="btnExcluir" min="-2" pref="88" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                                          <Component id="btnPesquisar" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
+                                          <Component id="jToggleButton1" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
                           </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="btnInserir" min="-2" pref="78" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="btnExcluir" min="-2" pref="88" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                              <Component id="btnPesquisar" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
-                              <Component id="jToggleButton1" min="-2" max="-2" attributes="0"/>
-                          </Group>
+                      </Group>
+                      <Group type="102" attributes="0">
+                          <EmptySpace min="-2" pref="154" max="-2" attributes="0"/>
+                          <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="jScrollPane1" min="-2" pref="445" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="136" max="-2" attributes="0"/>
-                      <Component id="jButton1" min="-2" max="-2" attributes="0"/>
-                  </Group>
               </Group>
-              <EmptySpace pref="33" max="32767" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -99,7 +110,7 @@
           <Group type="102" attributes="0">
               <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
+              <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="rbCober" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="rbEletrica" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -122,14 +133,18 @@
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="jButton1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="18" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="btnInserir" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btnPesquisar" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btnExcluir" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jToggleButton1" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="jScrollPane1" pref="182" max="32767" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="btnCancelar" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -266,6 +281,35 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Relat&#xf3;rios"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jToggleButton1ActionPerformed"/>
+      </Events>
     </Component>
+    <Component class="javax.swing.JButton" name="btnCancelar">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Cancelar"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCancelarActionPerformed"/>
+      </Events>
+    </Component>
+    <Container class="javax.swing.JScrollPane" name="jScrollPane1">
+      <AuxValues>
+        <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+      </AuxValues>
+
+      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+      <SubComponents>
+        <Component class="javax.swing.JTextArea" name="taSaida">
+          <Properties>
+            <Property name="columns" type="int" value="20"/>
+            <Property name="rows" type="int" value="5"/>
+          </Properties>
+          <AccessibilityProperties>
+            <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="Saida: "/>
+          </AccessibilityProperties>
+        </Component>
+      </SubComponents>
+    </Container>
   </SubComponents>
 </Form>

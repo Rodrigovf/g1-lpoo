@@ -44,8 +44,8 @@ public class Motoca {
         return pBasico;
     }
 
-    public static void setpBasico(double valorMetro) {
-        Motoca.pBasico = valorMetro;
+    public static void setpBasico(double pBasico) {
+        Motoca.pBasico = pBasico;
     }
 
     @Override

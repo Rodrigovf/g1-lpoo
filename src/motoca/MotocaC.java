@@ -14,7 +14,6 @@ public class MotocaC extends Motoca{
     private String cor;
     
     public MotocaC(){
-        
     }
     
     public MotocaC(int cod, String personagem, String cor){

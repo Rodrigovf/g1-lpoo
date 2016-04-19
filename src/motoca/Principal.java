@@ -13,8 +13,9 @@ import javax.swing.JOptionPane;
  * @author Comunix
  */
 public class Principal extends javax.swing.JFrame {
-    Motoca mPesq;
+    Motoca mPesq = null;
     static ArrayList<Motoca> motocas = new ArrayList();
+    
     // Relatorios rel=null;
 
     /**
@@ -49,23 +50,61 @@ public class Principal extends javax.swing.JFrame {
         return null;
     }
 
-    public void inserir() {
-        if (existeCodigo(Integer.parseInt(tfCod.getText())) != null) {
-            JOptionPane.showMessageDialog(null, "Código já cadastrado!");
-        } else {
-            if (rbComum.isSelected()) {
-                motocas.add(new Motoca(Integer.parseInt(tfCod.getText()), cbxPerso.getSelectedItem().toString()));
-            } else if (rbEletrica.isSelected()) {
-                motocas.add(new MotocaE(Integer.parseInt(tfCod.getText()), cbxPerso.getSelectedItem().toString(), cbxVolt.getSelectedItem().toString()));
+    public void incluir() {
+        if(tfCod.getText().equals("")||cbxPerso.getSelectedIndex()==0)
+            System.out.println("Você deve preencher os campos código e personagem");
+        else{
+            if (existeCodigo(Integer.parseInt(tfCod.getText())) != null) {
+                JOptionPane.showMessageDialog(null, "Código já cadastrado!");
             } else {
-                motocas.add(new MotocaC(Integer.parseInt(tfCod.getText()), cbxPerso.getSelectedItem().toString(), tfCor.getText()));
-            }
-            System.out.println(motocas.toString());
-            limpar();
+                if (rbComum.isSelected()) 
+                    motocas.add(new Motoca(Integer.parseInt(tfCod.getText()), cbxPerso.getSelectedItem().toString()));
+                 else if (rbEletrica.isSelected()) 
+                    motocas.add(new MotocaE(Integer.parseInt(tfCod.getText()), cbxPerso.getSelectedItem().toString(), cbxVolt.getSelectedItem().toString()));
+                 else 
+                    motocas.add(new MotocaC(Integer.parseInt(tfCod.getText()), cbxPerso.getSelectedItem().toString(), tfCor.getText()));
+
+                System.out.println(motocas.toString());
+               
+            }   
         }
     }
     
+    public void report(){
         
+    }   
+    
+    public void pesquisar(){
+        
+        if(tfCod.getText().equals("")) 
+            System.out.println("Digite o código do item que deseja pesquisar!");
+        
+        else{
+            mPesq = existeMotoca(Integer.parseInt(tfCod.getText()));
+            if(mPesq == null)
+                System.out.println("Código não cadastrado");
+            else{
+                cbxPerso.setSelectedItem(mPesq.getPersonagem());
+                if (mPesq instanceof MotocaC){
+                    tfCor.setEnabled(true);
+                    tfCor.setText(( (MotocaC) mPesq).getCor());
+                    rbCober.setSelected(true);
+                }
+                else if (mPesq instanceof MotocaE) {
+                    cbxVolt.setEnabled(true);
+                    cbxVolt.setSelectedItem(((MotocaE)mPesq).getVoltagem());
+                    rbEletrica.setSelected(true);
+                }
+                
+                else
+                    rbComum.setSelected(true);
+            }
+        }
+        btnInserir.setEnabled(false);
+        btnPesquisar.setEnabled(false);        
+        btnExcluir.setEnabled(true); 
+        
+    }
     
     public void limpar() {
         tfCod.setText(null);
@@ -74,6 +113,13 @@ public class Principal extends javax.swing.JFrame {
         cbxPerso.setSelectedIndex(0);
         rbComum.setSelected(true);
     
+    }
+    
+    public Motoca existeMotoca(int cod){
+        for (Motoca m : motocas)
+            if (m.getCod() == cod)
+                return m;
+        return null;
     }
 
     /**
@@ -104,6 +150,9 @@ public class Principal extends javax.swing.JFrame {
         tfCor = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jToggleButton1 = new javax.swing.JToggleButton();
+        btnCancelar = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        taSaida = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -182,27 +231,45 @@ public class Principal extends javax.swing.JFrame {
         });
 
         jToggleButton1.setText("Relatórios");
+        jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton1ActionPerformed(evt);
+            }
+        });
+
+        btnCancelar.setText("Cancelar");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
+
+        taSaida.setColumns(20);
+        taSaida.setRows(5);
+        jScrollPane1.setViewportView(taSaida);
+        taSaida.getAccessibleContext().setAccessibleName("Saida: ");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(147, 147, 147)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnCancelar)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(147, 147, 147)
+                            .addComponent(jLabel1))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(21, 21, 21)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(layout.createSequentialGroup()
                                     .addComponent(jLabel2)
                                     .addGap(18, 18, 18)
                                     .addComponent(rbComum)
                                     .addGap(27, 27, 27)
                                     .addComponent(rbEletrica)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGap(35, 35, 35)
                                     .addComponent(rbCober))
                                 .addGroup(layout.createSequentialGroup()
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -222,27 +289,34 @@ public class Principal extends javax.swing.JFrame {
                                             .addComponent(cbxVolt, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGroup(layout.createSequentialGroup()
                                             .addComponent(jLabel4)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(cbxPerso, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnInserir, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnPesquisar)
-                                .addGap(14, 14, 14)
-                                .addComponent(jToggleButton1))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(136, 136, 136)
-                        .addComponent(jButton1)))
-                .addContainerGap(33, Short.MAX_VALUE))
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                            .addComponent(cbxPerso, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGap(10, 10, 10)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGap(8, 8, 8)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(btnInserir, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(18, 18, 18)
+                                            .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(18, 18, 18)
+                                            .addComponent(btnPesquisar)
+                                            .addGap(14, 14, 14)
+                                            .addComponent(jToggleButton1))))))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(154, 154, 154)
+                            .addComponent(jButton1))
+                        .addGroup(layout.createSequentialGroup()
+                            .addContainerGap()
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 445, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(5, 5, 5)
                 .addComponent(jLabel1)
-                .addGap(38, 38, 38)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(rbCober)
                     .addComponent(rbEletrica)
@@ -262,13 +336,17 @@ public class Principal extends javax.swing.JFrame {
                     .addComponent(tfCor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addGap(4, 4, 4)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnInserir)
                     .addComponent(btnPesquisar)
                     .addComponent(btnExcluir)
                     .addComponent(jToggleButton1))
-                .addGap(31, 31, 31))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 182, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnCancelar)
+                .addGap(6, 6, 6))
         );
 
         pack();
@@ -289,7 +367,8 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_cbxPersoActionPerformed
 
     private void btnInserirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInserirActionPerformed
-        inserir();
+        incluir();
+        limpar();
     }//GEN-LAST:event_btnInserirActionPerformed
 
     private void rbEletricaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbEletricaActionPerformed
@@ -308,8 +387,17 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnExcluirActionPerformed
 
     private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
+         pesquisar();
         
     }//GEN-LAST:event_btnPesquisarActionPerformed
+
+    private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
+        report();
+    }//GEN-LAST:event_jToggleButton1ActionPerformed
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        limpar();
+    }//GEN-LAST:event_btnCancelarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -347,6 +435,7 @@ public class Principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnExcluir;
     private javax.swing.JButton btnInserir;
     private javax.swing.JButton btnPesquisar;
@@ -360,10 +449,12 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JRadioButton rbCober;
     private javax.swing.JRadioButton rbComum;
     private javax.swing.JRadioButton rbEletrica;
+    private javax.swing.JTextArea taSaida;
     private javax.swing.JTextField tfCod;
     private javax.swing.JTextField tfCor;
     // End of variables declaration//GEN-END:variables

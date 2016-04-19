@@ -14,7 +14,6 @@ public class MotocaE extends Motoca{
     private String voltagem;
     
     public MotocaE(){
-    
     }
     
      public MotocaE(int cod, String personagem, String voltagem) {
